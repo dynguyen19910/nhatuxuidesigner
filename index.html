@@ -212,7 +212,7 @@
     }
     .card .meta{ margin-top: 12px; color: var(--muted2); font-size: 12px; }
 
-    /* CASE STUDY */
+    /* CASE STUDY GRID */
     .case{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -290,10 +290,10 @@
           I turn complex problems into simple, beautiful interfaces.
           Focused on user research, information architecture, and high-fidelity UI.
         </p>
+
         <div class="heroActions">
-          <!-- đổi link này sang email của bạn -->
+          <!-- CHANGE THESE LINKS -->
           <a class="btn primary" href="mailto:yourname@email.com">Email me</a>
-          <!-- đổi link này sang portfolio/figma/behance thật -->
           <a class="btn" href="#" onclick="alert('Add your Behance/Dribbble link here!')">View work</a>
           <a class="btn" href="#projects">See projects ↓</a>
         </div>
@@ -303,7 +303,7 @@
         <div class="heroCardInner">
           <div style="font-weight:800; margin-bottom:8px;">Highlights</div>
           <div style="color: var(--muted); font-size: 14px;">
-            A portfolio layout built for GitHub Pages (fast + clean).
+            Portfolio focused on UX clarity, AI explainability, and fintech UI.
           </div>
 
           <div class="statGrid">
@@ -333,11 +333,20 @@
       <div class="sectionTop">
         <div>
           <h2>Selected Projects</h2>
-          <div class="sub">Replace these with your real projects (title + 1 line + tags). You can keep it minimal.</div>
+          <div class="sub">Replace these with your real projects (title + 1 line + tags). Keep it clean.</div>
         </div>
       </div>
 
       <div class="grid">
+        <a class="card" href="#case">
+          <div class="title">AI Investment Platform</div>
+          <div class="desc">Fintech UX/UI for AI portfolio optimization with transparent insights.</div>
+          <div class="tags">
+            <span class="tag">Fintech</span><span class="tag">AI</span><span class="tag">Dashboard</span>
+          </div>
+          <div class="meta">Role: UX/UI • Tool: Figma • Output: Prototype</div>
+        </a>
+
         <a class="card" href="#case">
           <div class="title">Mobile Banking App</div>
           <div class="desc">Research → wireframes → UI system → interactive prototype.</div>
@@ -348,17 +357,8 @@
         </a>
 
         <a class="card" href="#case">
-          <div class="title">Travel Booking Platform</div>
-          <div class="desc">User flows, responsive UI, and design system components.</div>
-          <div class="tags">
-            <span class="tag">User Flow</span><span class="tag">Design System</span><span class="tag">Responsive</span>
-          </div>
-          <div class="meta">Role: Product Design • Tools: Figma</div>
-        </a>
-
-        <a class="card" href="#case">
           <div class="title">Analytics Dashboard</div>
-          <div class="desc">Improved data readability and reduced cognitive load.</div>
+          <div class="desc">Improved hierarchy and reduced cognitive load for KPI tracking.</div>
           <div class="tags">
             <span class="tag">IA</span><span class="tag">Data Viz</span><span class="tag">Usability</span>
           </div>
@@ -367,49 +367,84 @@
       </div>
     </section>
 
-    <!-- CASE STUDY (template) -->
+    <!-- CASE STUDY -->
     <section id="case">
       <div class="sectionTop">
         <div>
-          <h2>Case Study (Template)</h2>
-          <div class="sub">Copy this structure for each project. Keep it short: Problem → Process → Result.</div>
+          <h2>Case Study — AI Investment Platform</h2>
+          <div class="sub">
+            UX/UI design for an AI-powered investment platform focused on portfolio optimization,
+            transparency, and user trust.
+          </div>
         </div>
+      </div>
+
+      <!-- IMAGE (your file is in ROOT: casestudy.jpg) -->
+      <div style="margin:28px 0;">
+        <img
+          src="casestudy.jpg"
+          alt="AI Investment Platform UX UI"
+          style="width:100%; border-radius:22px; box-shadow:0 30px 80px rgba(0,0,0,.45);"
+        />
+        <p style="margin-top:12px; font-size:14px; color:rgba(255,255,255,.65); max-width:820px;">
+          Key screens: dashboard overview, AI advisor controls, portfolio allocation, market analytics,
+          and real-time insights.
+        </p>
       </div>
 
       <div class="case">
         <div class="panel">
           <h3>Problem</h3>
           <ul>
-            <li>Users struggled to complete the main task in fewer steps.</li>
-            <li>Navigation and hierarchy were unclear on mobile.</li>
-            <li>Too many competing CTAs reduced conversion.</li>
+            <li>Users feel overwhelmed by financial charts and terminology.</li>
+            <li>AI recommendations can feel like a “black box” → low trust.</li>
+            <li>Portfolio allocation and risk exposure are hard to understand quickly.</li>
           </ul>
         </div>
 
         <div class="panel">
-          <h3>My Process</h3>
+          <h3>Users & Goals</h3>
           <ul>
-            <li>Quick research: interviews + pain points + goals</li>
-            <li>User flow + wireframes (low → high)</li>
-            <li>UI system + prototype + iteration</li>
+            <li><b>Target users:</b> beginner and intermediate investors.</li>
+            <li>Enable fast understanding of performance and risk at a glance.</li>
+            <li>Make AI decisions transparent and adjustable (control + clarity).</li>
           </ul>
         </div>
 
         <div class="panel">
-          <h3>Solution</h3>
+          <h3>Design Approach</h3>
           <ul>
-            <li>Simplified information architecture and primary CTA.</li>
-            <li>Improved visual hierarchy and spacing.</li>
-            <li>Responsive layout + consistent components.</li>
+            <li>Dashboard-first hierarchy for financial awareness.</li>
+            <li>Clear grouping: performance → allocation → AI controls → insights.</li>
+            <li>Readable charts + simplified tables to reduce cognitive load.</li>
           </ul>
         </div>
 
         <div class="panel">
-          <h3>Result</h3>
+          <h3>Key UX/UI Decisions</h3>
           <ul>
-            <li>Faster task completion and fewer errors.</li>
-            <li>Cleaner UI and better readability.</li>
-            <li>Ready for handoff to development.</li>
+            <li><b>Central Dashboard:</b> key metrics + trend graph for quick scanning.</li>
+            <li><b>AI Advisor:</b> toggle + settings gives users control and trust.</li>
+            <li><b>Allocation Donut:</b> instantly communicates distribution.</li>
+            <li><b>Market Overview:</b> supports informed choices with clear visual cues.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Outcome</h3>
+          <ul>
+            <li>Cleaner hierarchy and less clutter → faster comprehension.</li>
+            <li>Higher perceived trust with visible AI controls and explanations.</li>
+            <li>Modern fintech UI balancing power and simplicity.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Next Steps</h3>
+          <ul>
+            <li>User testing on AI control comprehension and “explain” content.</li>
+            <li>Interactive what-if slider to preview risk changes.</li>
+            <li>Drift alerts + rebalancing suggestions to support long-term behavior.</li>
           </ul>
         </div>
       </div>
