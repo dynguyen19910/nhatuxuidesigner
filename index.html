@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nhat Nguyen | UX/UI Designer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui;
+      background: radial-gradient(circle at top, #0f1b3d, #050a1f);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 24px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-bottom: 120px;
+    }
+
+    .hero span {
+      color: #7aa2ff;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      margin: 20px 0;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: auto;
+      color: #cbd5ff;
+      font-size: 1.1rem;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 100px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    /* PROJECTS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 28px;
+      transition: 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #c7d2ff;
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #8fa0ff;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <span>UX / UI Designer</span>
+      <h1>Nhat Nguyen</h1>
+      <p>
+        I design intuitive digital experiences that blend aesthetics,
+        usability, and business goals.
+      </p>
+    </div>
+
+    <!-- ABOUT -->
+    <section>
+      <h2>About Me</h2>
+      <p style="max-width: 700px; color:#cbd5ff">
+        I’m a UX/UI Designer focused on creating clean, user-centered interfaces.
+        I enjoy turning complex problems into simple, beautiful solutions.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <h2>Selected Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Mobile Banking App</h3>
+          <p>UX research, wireframes, UI system, and interactive prototype.</p>
+        </div>
+
+        <div class="card">
+          <h3>Travel Booking Platform</h3>
+          <p>User flows, responsive UI, and design system.</p>
+        </div>
+
+        <div class="card">
+          <h3>Dashboard Analytics</h3>
+          <p>Data visualization and usability improvements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section>
+      <h2>Contact</h2>
+      <p style="color:#cbd5ff">
+        Email: nhat.nguyen@email.com <br />
+        LinkedIn / Behance / Dribbble
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 Nhat Nguyen — UX/UI Designer
+  </footer>
+
+</body>
+</html>
