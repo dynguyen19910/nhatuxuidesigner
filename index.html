@@ -6,162 +6,477 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg: #050a1f;
+      --bg2:#0b1336;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.10);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,.75);
+      --muted2: rgba(255,255,255,.62);
+      --brand: #7aa2ff;
+      --brand2:#9bdcff;
+      --shadow: 0 24px 80px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui;
-      background: radial-gradient(circle at top, #0f1b3d, #050a1f);
-      color: #ffffff;
-      line-height: 1.6;
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Inter", system-ui;
+      color: var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 0%, rgba(122,162,255,.22), transparent 60%),
+        radial-gradient(800px 500px at 80% 10%, rgba(155,220,255,.16), transparent 55%),
+        radial-gradient(700px 400px at 50% 90%, rgba(122,162,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      min-height: 100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: 1120px; margin: 0 auto; padding: 28px 20px 90px; }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 80px 24px;
+    /* NAV */
+    .nav{
+      position: sticky; top: 10px; z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(5,10,31,.42);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      padding: 10px 14px;
+      display:flex; align-items:center; justify-content:space-between;
+      box-shadow: 0 14px 50px rgba(0,0,0,.30);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 6px rgba(122,162,255,.15);
+    }
+    .navlinks{ display:flex; gap:14px; align-items:center; }
+    .navlinks a{
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.06);
+      color: #fff;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:650;
+      font-size:14px;
+      transition: .25s ease;
+      cursor:pointer;
+      gap:10px;
+    }
+    .btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.10); }
+    .btn.primary{
+      border: 1px solid rgba(122,162,255,.45);
+      background: linear-gradient(135deg, rgba(122,162,255,.28), rgba(155,220,255,.18));
+    }
+    .btn.primary:hover{
+      box-shadow: 0 18px 60px rgba(122,162,255,.22);
     }
 
     /* HERO */
-    .hero {
-      text-align: center;
-      margin-bottom: 120px;
+    .hero{
+      padding: 70px 0 34px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+      align-items: center;
     }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+    .hero h1{
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+    }
+    .gradient{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p{
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+    }
+    .heroActions{ display:flex; gap:12px; margin-top: 22px; flex-wrap:wrap; }
 
-    .hero span {
-      color: #7aa2ff;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 0.85rem;
+    .heroCard{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
     }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      margin: 20px 0;
-      font-weight: 800;
-      line-height: 1.1;
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(350px 240px at 20% 20%, rgba(122,162,255,.25), transparent 55%),
+                  radial-gradient(260px 200px at 90% 30%, rgba(155,220,255,.18), transparent 55%);
+      pointer-events:none;
+      opacity:.8;
     }
-
-    .hero p {
-      max-width: 640px;
-      margin: auto;
-      color: #cbd5ff;
-      font-size: 1.1rem;
+    .heroCardInner{ position: relative; }
+    .statGrid{
+      display:grid; grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
     }
+    .stat{
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 14px;
+    }
+    .stat .n{ font-weight:850; font-size: 20px; }
+    .stat .l{ color: var(--muted2); font-size: 12px; margin-top: 2px; }
 
     /* SECTIONS */
-    section {
-      margin-bottom: 100px;
+    section{ margin-top: 70px; }
+    .sectionTop{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom: 18px;
+    }
+    h2{
+      font-size: 26px;
+      letter-spacing: -0.2px;
+    }
+    .sub{
+      color: var(--muted2);
+      font-size: 14px;
+      max-width: 520px;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
+    /* CARDS GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
     }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 18px;
+      transition: .25s ease;
+      position: relative;
+      overflow:hidden;
+      min-height: 160px;
+    }
+    .card:hover{
+      transform: translateY(-5px);
+      background: var(--card2);
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
+    }
+    .card .title{ font-weight:800; font-size: 16px; margin-bottom: 8px; }
+    .card .desc{ color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 12px; }
+    .tag{
+      font-size: 12px;
+      color: rgba(255,255,255,.82);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .card .meta{ margin-top: 12px; color: var(--muted2); font-size: 12px; }
 
-    /* PROJECTS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    /* CASE STUDY */
+    .case{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
+    .panel{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 18px;
+    }
+    .panel h3{ font-size: 16px; margin-bottom: 10px; }
+    .panel ul{ padding-left: 18px; color: var(--muted); }
+    .panel li{ margin: 8px 0; }
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 28px;
-      transition: 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.08);
+    /* CONTACT */
+    .contactCard{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 22px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      flex-wrap: wrap;
     }
-
-    .card:hover {
-      transform: translateY(-6px);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      color: #c7d2ff;
-      font-size: 0.95rem;
-    }
+    .contactCard p{ color: var(--muted); max-width: 620px; }
+    .links{ display:flex; gap:10px; flex-wrap:wrap; }
 
     /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #8fa0ff;
-      font-size: 0.9rem;
+    footer{
+      margin-top: 90px;
+      text-align:center;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 6; }
+      .case{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
+    }
+    @media (max-width: 560px){
+      .card{ grid-column: span 12; }
     }
   </style>
 </head>
-<body>
 
-  <div class="container">
-    <!-- HERO -->
-    <div class="hero">
-      <span>UX / UI Designer</span>
-      <h1>Nhat Nguyen</h1>
-      <p>
-        I design intuitive digital experiences that blend aesthetics,
-        usability, and business goals.
-      </p>
+<body>
+  <div class="wrap">
+
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>Nhat Nguyen</div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#projects">Projects</a>
+        <a href="#case">Case Study</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="btn primary" href="#contact">Let’s work</a>
     </div>
 
-    <!-- ABOUT -->
-    <section>
-      <h2>About Me</h2>
-      <p style="max-width: 700px; color:#cbd5ff">
-        I’m a UX/UI Designer focused on creating clean, user-centered interfaces.
-        I enjoy turning complex problems into simple, beautiful solutions.
-      </p>
-    </section>
+    <!-- HERO -->
+    <div class="hero" id="top">
+      <div>
+        <div class="pill">UX / UI Designer • Product Design • Prototyping</div>
+        <h1>Designing <span class="gradient">clean</span> and <span class="gradient">usable</span> experiences.</h1>
+        <p>
+          I turn complex problems into simple, beautiful interfaces.
+          Focused on user research, information architecture, and high-fidelity UI.
+        </p>
+        <div class="heroActions">
+          <!-- đổi link này sang email của bạn -->
+          <a class="btn primary" href="mailto:yourname@email.com">Email me</a>
+          <!-- đổi link này sang portfolio/figma/behance thật -->
+          <a class="btn" href="#" onclick="alert('Add your Behance/Dribbble link here!')">View work</a>
+          <a class="btn" href="#projects">See projects ↓</a>
+        </div>
+      </div>
+
+      <div class="heroCard">
+        <div class="heroCardInner">
+          <div style="font-weight:800; margin-bottom:8px;">Highlights</div>
+          <div style="color: var(--muted); font-size: 14px;">
+            A portfolio layout built for GitHub Pages (fast + clean).
+          </div>
+
+          <div class="statGrid">
+            <div class="stat">
+              <div class="n">3+</div>
+              <div class="l">Case study ready</div>
+            </div>
+            <div class="stat">
+              <div class="n">Mobile</div>
+              <div class="l">Responsive layout</div>
+            </div>
+            <div class="stat">
+              <div class="n">UX</div>
+              <div class="l">Research & flows</div>
+            </div>
+            <div class="stat">
+              <div class="n">UI</div>
+              <div class="l">Design systems</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- PROJECTS -->
-    <section>
-      <h2>Selected Projects</h2>
+    <section id="projects">
+      <div class="sectionTop">
+        <div>
+          <h2>Selected Projects</h2>
+          <div class="sub">Replace these with your real projects (title + 1 line + tags). You can keep it minimal.</div>
+        </div>
+      </div>
+
       <div class="grid">
-        <div class="card">
-          <h3>Mobile Banking App</h3>
-          <p>UX research, wireframes, UI system, and interactive prototype.</p>
+        <a class="card" href="#case">
+          <div class="title">Mobile Banking App</div>
+          <div class="desc">Research → wireframes → UI system → interactive prototype.</div>
+          <div class="tags">
+            <span class="tag">UX Research</span><span class="tag">Wireframes</span><span class="tag">Prototype</span>
+          </div>
+          <div class="meta">Role: UX/UI • Tools: Figma • Duration: 2 weeks</div>
+        </a>
+
+        <a class="card" href="#case">
+          <div class="title">Travel Booking Platform</div>
+          <div class="desc">User flows, responsive UI, and design system components.</div>
+          <div class="tags">
+            <span class="tag">User Flow</span><span class="tag">Design System</span><span class="tag">Responsive</span>
+          </div>
+          <div class="meta">Role: Product Design • Tools: Figma</div>
+        </a>
+
+        <a class="card" href="#case">
+          <div class="title">Analytics Dashboard</div>
+          <div class="desc">Improved data readability and reduced cognitive load.</div>
+          <div class="tags">
+            <span class="tag">IA</span><span class="tag">Data Viz</span><span class="tag">Usability</span>
+          </div>
+          <div class="meta">Outcome: clearer KPI layout</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CASE STUDY (template) -->
+    <section id="case">
+      <div class="sectionTop">
+        <div>
+          <h2>Case Study (Template)</h2>
+          <div class="sub">Copy this structure for each project. Keep it short: Problem → Process → Result.</div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="panel">
+          <h3>Problem</h3>
+          <ul>
+            <li>Users struggled to complete the main task in fewer steps.</li>
+            <li>Navigation and hierarchy were unclear on mobile.</li>
+            <li>Too many competing CTAs reduced conversion.</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <h3>Travel Booking Platform</h3>
-          <p>User flows, responsive UI, and design system.</p>
+        <div class="panel">
+          <h3>My Process</h3>
+          <ul>
+            <li>Quick research: interviews + pain points + goals</li>
+            <li>User flow + wireframes (low → high)</li>
+            <li>UI system + prototype + iteration</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <h3>Dashboard Analytics</h3>
-          <p>Data visualization and usability improvements.</p>
+        <div class="panel">
+          <h3>Solution</h3>
+          <ul>
+            <li>Simplified information architecture and primary CTA.</li>
+            <li>Improved visual hierarchy and spacing.</li>
+            <li>Responsive layout + consistent components.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Result</h3>
+          <ul>
+            <li>Faster task completion and fewer errors.</li>
+            <li>Cleaner UI and better readability.</li>
+            <li>Ready for handoff to development.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="sectionTop">
+        <div>
+          <h2>Skills</h2>
+          <div class="sub">Keep it focused—what you want to be hired for.</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 6;">
+          <div class="title">UX</div>
+          <div class="desc">Research, user flows, information architecture, usability testing.</div>
+          <div class="tags">
+            <span class="tag">Personas</span><span class="tag">Journey Map</span><span class="tag">Wireframes</span>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="title">UI</div>
+          <div class="desc">Visual design, design systems, responsive layouts, handoff.</div>
+          <div class="tags">
+            <span class="tag">Figma</span><span class="tag">Components</span><span class="tag">Tokens</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section>
-      <h2>Contact</h2>
-      <p style="color:#cbd5ff">
-        Email: nhat.nguyen@email.com <br />
-        LinkedIn / Behance / Dribbble
-      </p>
+    <section id="contact">
+      <div class="sectionTop">
+        <div>
+          <h2>Contact</h2>
+          <div class="sub">Replace links with your real profiles.</div>
+        </div>
+      </div>
+
+      <div class="contactCard">
+        <div>
+          <div style="font-weight:850; font-size:16px; margin-bottom:6px;">Let’s build something great.</div>
+          <p>
+            Email me for freelance, internship, or full-time UX/UI roles. I can share full case studies + Figma links.
+          </p>
+        </div>
+
+        <div class="links">
+          <a class="btn primary" href="mailto:yourname@email.com">Email</a>
+          <a class="btn" href="#" onclick="alert('Paste your LinkedIn link here!')">LinkedIn</a>
+          <a class="btn" href="#" onclick="alert('Paste your Behance link here!')">Behance</a>
+          <a class="btn" href="#top">Back to top ↑</a>
+        </div>
+      </div>
     </section>
+
+    <footer>
+      © <span id="year"></span> Nhat Nguyen — UX/UI Designer
+    </footer>
+
   </div>
 
-  <footer>
-    © 2026 Nhat Nguyen — UX/UI Designer
-  </footer>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
